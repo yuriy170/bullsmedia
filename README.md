@@ -37,13 +37,78 @@ Create a `.env` file based on `.env.example`:
 
 ```dotenv
 PORT=443
-SSL_KEY_PATH=./certs/privkey.pem
-SSL_CERT_PATH=./certs/fullchain.pem
-REDIRECT_BASE_URL=https://example.com
+SSL_CERT_PATH=./config/ssl/cert.pem
+SSL_KEY_PATH=./config/ssl/key.pem
+REDIRECT_BASE_URL=https://affiliate-network.com/
 REDIS_URL=redis://localhost:6379
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+DATABASE_URL=postgresql://bullsmedia:1234567890@localhost:5432/bullsmedia
 REDIS_TTL=600
 ```
+
+
+## 🗃️ PostgreSQL Setup
+
+### Option 1: Using `psql` console
+
+1. Create a database:
+   ```bash
+   createdb bullsmedia
+   ```
+
+2. Import schema:
+   ```bash
+   psql -U your_user -d bullsaffiliater -f bullsmedia.sql
+   ```
+
+
+### Option 2: Using pgAdmin 4
+
+1. Open pgAdmin and connect to your server.
+2. Right-click **Databases → Create → Database**, name it `bullsmedia`.
+3. Open **Query Tool**.
+4. Load and run `bullsmedia.sql` (from your project).
+
+## 🧰 Redis Installation
+
+Redis is used for caching `our_param` mappings and improving performance.
+
+### macOS (via Homebrew)
+
+```bash
+brew install redis
+brew services start redis
+```
+
+### Linux (Debian/Ubuntu)
+
+```bash
+sudo apt update
+sudo apt install redis-server
+sudo systemctl enable redis-server
+sudo systemctl start redis
+```
+
+### Windows (via WSL or Docker)
+
+> Redis is not officially supported on native Windows. Use WSL or Docker.
+
+#### Option 1: Using WSL (Ubuntu)
+
+```bash
+sudo apt update
+sudo apt install redis-server
+sudo service redis-server start
+```
+
+#### Option 2: Using Docker
+
+```bash
+docker run --name redis -p 6379:6379 -d redis
+```
+
+After installation, Redis should be accessible at `redis://localhost:6379`.
+
+
 
 ## 📡 API Endpoints
 
