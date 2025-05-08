@@ -24,8 +24,7 @@ async function redirectRoute(fastify, reply) {
             //Trying to get from redis cache version or generated params
             const cached = await redis.get(`v:${hasFingerPrint}`);
             if ( cached && !needForcing) {
-                return {base62_redis: cached, affiliateLink: affiliateLink};
-                // return reply.redirect(`${affiliateLink}?our_param=${cached}`, 302);
+                return reply.redirect(`${affiliateLink}?our_param=${cached}`, 302);
             }
 
             try {
@@ -66,8 +65,7 @@ async function redirectRoute(fastify, reply) {
                 if (ourParamValue?.length > 0) {
                     //... and to redis
                     await redis.set(`v:${hasFingerPrint}`, ourParamValue, 'EX', redisTime);
-                    return { base62: ourParamValue };
-                    // return reply.redirect(`${affiliateLink}?our_param=${generatedParam}`, 302);
+                    return reply.redirect(`${affiliateLink}?our_param=${ourParamValue}`, 302);
                 }
 
             } catch (err) {
