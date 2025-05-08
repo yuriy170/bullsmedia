@@ -26,6 +26,9 @@ A high-performance Node.js + Fastify service that processes incoming traffic sou
 git clone https://github.com/yuriy170/bullsaffiliater.git
 cd bullsaffiliater
 npm install
+
+After installing of all node_modules you can run project with command
+npm start server.js
 ```
 
 ## 🛠 Environment Variables
