@@ -1,0 +1,19 @@
+{
+  "name": "bullsaffiliater",
+  "version": "1.0.0",
+  "description": "The purpose of this functionality is to process requests from a traffic source that contain parameters",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yuriy Gershem",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/rate-limit": "^10.2.2",
+    "base62": "^2.0.2",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.2",
+    "ioredis": "^5.6.1",
+    "pg": "^8.15.6"
+  }
+}
